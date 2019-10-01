@@ -45,3 +45,31 @@ exports.getUser = (req, res, next) => {
     });
     next();
 };
+
+exports.login = (req, res, next) => {
+    console.log('test login');
+    const email = req.body.email;
+    const password = req.body.password;
+    return User.findOne({email}).then( user => {
+        if(!user) {
+            const error = new Error('email couldnt be found');
+            error.status = 401;
+            throw error;
+        } else if (user.password !== password) {
+            const error = new Error('wrong password');
+            error.status = 401;
+            throw error;
+        } else {
+            res.status(200);
+            res.locals.items = user;
+            res.locals.processed = true;
+            next();
+        }
+    }).catch(err => {
+        if(!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    })
+    next();
+};
