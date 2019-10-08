@@ -34,6 +34,10 @@ const itemSchema = new Schema({
             type: Number,
             required: [true, 'Amount required!']
         },
+        price: {
+            type: Number,
+            required: [true, 'Price required!']
+        },
         camera: {
             type: String,
             required: [true, 'Camera required!']
