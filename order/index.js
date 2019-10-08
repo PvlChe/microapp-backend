@@ -51,7 +51,7 @@ app.use((err,req,res,next) => {
 });
 
 mongoose.connect(mongoDBURI, {useNewUrlParser: true , useUnifiedTopology: true }).then(()=> {
-    app.listen(process.env.PORT || 4001, function () {
+    app.listen(process.env.PORT || 4002, function () {
         console.log('listening');
     });
 }).catch((err)=> {
