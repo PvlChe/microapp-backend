@@ -22,13 +22,7 @@ app.use((req,res,next)=>{
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     next();
 });
-/*dummy.forEach( data => {
-    const item = new Item(data);
 
-    item.save().then( data => {
-        console.log('Success', data);
-    });
-});*/
 
 app.use('/item', require('./routes/item'));
 

@@ -11,6 +11,11 @@ const orderSchema = new Schema({
             required: [true, 'itemID is required']
 
         },
+        orderedAmount: {
+            type: Number,
+            required: [true, 'Amount is required']
+
+        },
         itemModel: {
             type: String,
             required: [true, 'itemModel is required']
