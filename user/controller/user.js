@@ -73,3 +73,29 @@ exports.login = (req, res, next) => {
     })
     next();
 };
+
+
+exports.signUp = (req, res, next) => {
+    const email = req.body.email;
+    const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
+    const password = req.body.password;
+
+    const user = new User({
+        email,
+        firstname,
+        lastname,
+        password
+    });
+    user.save().then( result => {
+        res.status(201);
+        res.locals.items = result;
+        res.locals.processed = true;
+        next();
+    }).catch(err => {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    });
+};
